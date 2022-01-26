@@ -20,12 +20,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint './**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint './**/*.{js,jsx,ts,tsx}' --fix",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json,html,scss,sass}' --config ./.prettierrc --ignore-path ./.gitignore",
+    "setup": "npm install"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,md,json,html,scss,sass}": [
+      "prettier --write --config ./.prettierrc --ignore-path ./.gitignore"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
     ]
   },
   "browserslist": {
@@ -42,7 +48,13 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
+    "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "lint-staged": "^12.3.1",
     "postcss": "^8.4.5",
+    "prettier": "^2.5.1",
     "tailwindcss": "^3.0.16"
   }
 }
